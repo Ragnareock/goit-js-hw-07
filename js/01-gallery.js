@@ -3,8 +3,8 @@ import { galleryItems } from './gallery-items.js';
 
 const galleryListEl = document.querySelector('.gallery');
 
-function createImageCardsMarkup(items) {
-  return items
+function createImageCardsMarkup(item) {
+  return item
     .map(({ preview, original, description }) => {
       return `
 <li class="gallery__item">
