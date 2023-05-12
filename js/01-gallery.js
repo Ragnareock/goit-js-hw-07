@@ -26,10 +26,21 @@ galleryListEl.innerHTML = createImageCardsMarkup(galleryItems);
 
 galleryListEl.addEventListener('click', onImageContainerClick);
 
-function onImageContainerClick(evt) {
-    evt.preventDefault();
-    if (!evt.target.classList.contains('gallery__image')) {
-        return;
+function onImageContainerClick(e) {
+  e.preventDefault();
+  if (!e.target.classList.contains('gallery__image')) {
+    return;
+  }
+
+  const instance = basicLightbox.create(`
+    <img src="${e.target.dataset.source}" width="800" height="600">
+`);
+
+  instance.show();
+
+  galleryListEl.addEventListener('keydown', ({ code }) => {
+    if (code === 'Escape') {
+      instance.close();
     }
-    console.log(evt.target);
+  });
 }
