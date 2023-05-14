@@ -36,11 +36,11 @@ function onImageContainerClick(e) {
     <img src="${e.target.dataset.source}" width="800" height="600">
 `);
 
-  instance.show();
+  instance.show(galleryListEl.addEventListener('keydown', closeByEsc));
 
-  galleryListEl.addEventListener('keydown', ({ code }) => {
+  function closeByEsc({ code }) {
     if (code === 'Escape') {
-      instance.close();
+      instance.close(galleryListEl.removeEventListener('keydown', closeByEsc));
     }
-  });
+  }
 }
